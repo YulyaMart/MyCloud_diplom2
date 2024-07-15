@@ -1,0 +1,65 @@
+.file-list-container {
+  background-color: white;
+  border-radius: 8px;
+  margin: 0 20px;
+}
+
+.file-list-header {
+  padding: 30px 0px 10px 20px;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0px 10px;
+    width: 100%;
+}
+
+thead {
+  display: table-header-group;
+  vertical-align: middle;
+  unicode-bidi: isolate;
+  border-color: inherit;
+  background-color: rgb(236, 240, 241);
+  border-bottom: 2px solid #E86850;
+}
+
+tr {
+  text-align: left;
+  padding: 12px;
+  border-bottom: 1px solid rgb(236, 240, 241);
+}
+
+th, td {
+    border: none;
+    padding: 8px;
+    text-align: left;
+}
+  
+.table-string:hover {
+    background-color: rgb(210, 236, 254); 
+}
+
+th:hover {
+        background-color: initial;
+ }
+  
+ tbody td:nth-child(1) { width: 35%; } /* Имя файла */
+ tbody td:nth-child(2) { width: 10%; } /* Размер (КБ) */
+ tbody td:nth-child(3) { width: 20%; } /* Комментарий */
+ tbody td:nth-child(4) { width: 12%; } /* Дата загрузки */
+ tbody td:nth-child(5) { width: 12%; } /* Последняя дата скачивания */
+
+.file-button {
+  background-color: #E86850;
+  color: white;
+  margin: 0 5px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+ }
+
+.delete-button {
+  background-color: #f52500;
+}
+ 

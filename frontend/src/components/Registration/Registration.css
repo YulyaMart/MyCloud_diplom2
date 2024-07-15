@@ -1,0 +1,9 @@
+.registrarion-container {
+    margin: auto;
+}
+
+.registrarion-container h2 {
+    text-align: center;
+    color: #E86850;
+    text-transform: uppercase;
+}
