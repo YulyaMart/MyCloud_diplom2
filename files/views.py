@@ -210,14 +210,14 @@ def delete_file(request, file_id):
 # view function provides a way for users to download a shared file
 @api_view(['GET'])
 def download_sharedfile(request, unique_code):
-    file_object = get_object_or_404(File, special_link=f'http://72.14.201.28/dwnld/{unique_code}')
+    file_object = get_object_or_404(File, special_link=f'http://95.163.221.33/dwnld/{unique_code}')
     file_path = str(file_object.storage_path)
     if os.path.exists(file_path):
         with open(file_path, 'rb') as file:
             response = HttpResponse(file.read(), content_type='application/octet-stream')
             filename = os.path.basename(file_object.name)
             response['Content-Disposition'] = f'attachment; filename={filename.encode("utf-8").decode("latin-1")}'
-            response['Access-Control-Allow-Origin'] = 'http://72.14.201.28:5173'
+            response['Access-Control-Allow-Origin'] = 'http://95.163.221.33:5173'
             response['Access-Control-Allow-Methods'] = 'GET'
             return response
     else:

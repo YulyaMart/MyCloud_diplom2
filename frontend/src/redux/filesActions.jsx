@@ -96,7 +96,6 @@ export const downloadFile = (fileId) => {
         console.warn('Content-Disposition header is missing. Using fileID.');
       }
 
-
       const blob = await response.blob();
       const link = document.createElement('a');
       document.body.appendChild(link);
@@ -105,7 +104,6 @@ export const downloadFile = (fileId) => {
       link.download = filename;
       link.click();
       document.body.removeChild(link);
-      dispatch(fetchFiles());
       console.log('File download successfully') 
       dispatch(fetchFiles());
     } catch (error) {

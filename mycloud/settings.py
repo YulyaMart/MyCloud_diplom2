@@ -28,7 +28,7 @@ SECRET_KEY = os.getenv('SECRET_KEY'),
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '72.14.201.28']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '95.163.221.33']
 
 
 # Application definition
@@ -208,7 +208,7 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 INTERNAL_IPS = [
-    '127.0.0.1',
+    '127.0.0.1', '95.163.221.33'
 ]
 
 MEDIA_ROOT = 'storage/'
