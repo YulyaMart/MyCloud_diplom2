@@ -5,7 +5,7 @@
 3. Создайте файл .env в соответвии с примером "env_example"
    
 5. В папке проекта создайте виртуальное окружение
-    '''python -m venv env'''
+    ```python -m venv env```
    
 6. Установите зависимости
     '''pip install -r requirements.txt'''
