@@ -4,25 +4,32 @@
    
 3. Создайте файл .env в соответвии с примером "env_example"
    
-5. В папке проекта создайте виртуальное окружение
+4. В папке проекта создайте виртуальное окружение
+   
     ```python -m venv env```
    
-6. Установите зависимости
-    '''pip install -r requirements.txt'''
+5. Установите зависимости
    
-7. Выполните миграции
-    '''python manage.py migrate'''
+    ```pip install -r requirements.txt```
    
-8. Создайте суперпользователя
-    '''python manage.py createsuperuser'''
+6. Выполните миграции
     
-9. Запустите сервер 
-    '''python manage.py runserver'''
+    ```python manage.py migrate```
+   
+7. Создайте суперпользователя
     
-10. Откройте отдельный теминал и перейдите в папку frontend
+    ```python manage.py createsuperuser```
     
-11. Установите зависимости
-    '''npm i'''
+8. Запустите сервер
     
-12. Запустите скрипт для сборки
-    '''npm run dev'''
+    ```python manage.py runserver```
+    
+9. Откройте отдельный теминал и перейдите в папку frontend
+    
+10. Установите зависимости
+    
+    ```npm i```
+    
+11. Запустите скрипт для сборки
+    
+    ```npm run dev```
