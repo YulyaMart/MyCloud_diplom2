@@ -5,8 +5,9 @@ import base64
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import authenticate, login, logout
-from rest_framework_simplejwt.tokens import RefreshToken
+from django.middleware.csrf import get_token
 
+from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny, IsAdminUser
 from rest_framework.response import Response
@@ -86,7 +87,7 @@ def delete_user(request, user_id):
 
 
 # views for user authentication and authorization
-@api_view(['POST'])
+@api_view(['POST', 'OPTIONS'])
 @permission_classes([AllowAny])
 @csrf_exempt
 def user_login(request):
@@ -102,17 +103,18 @@ def user_login(request):
 
         if user is not None:
             login(request, user)
-            token = RefreshToken.for_user(user)
-            token_value = str(token)
+            refresh = RefreshToken.for_user(user) 
             credentials = f"{username}:{password}"
             base64_credentials = base64.b64encode(credentials.encode()).decode("utf-8")
 
             response_data = {
                 'message': 'Login successful',
                 'isAdmin': user.is_staff,
-                'token': token_value,
+                'refresh': str(refresh), #returns TypeError: Expected a string value
+                'access': str(refresh.access_token),
                 'authorization': f"Basic {base64_credentials}",
                 'currentuser' : username,
+                'CSRF-token' : str(get_token(request)),
             }
             return JsonResponse(response_data)
         

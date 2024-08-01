@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
+import datetime
 import os
 from pathlib import Path
 from users.settings import *
@@ -24,6 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY'),
+JWT_SECRET_KEY='i=@dw$tq%gcz7+yqw4f&(o#4^cwc%^rn&y7^5$f$$0(k*9+*k4',
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -42,6 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.permissions',
+    'rest_framework.authtoken',
+    'rest_framework_simplejwt',
     'drf_yasg',
     'corsheaders',
     'debug_toolbar',
@@ -130,6 +134,18 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+REST_FRAMEWORK = {
+        'DEFAULT_PERMISSION_CLASSES': [
+            'rest_framework.permissions.IsAuthenticated',
+        ],
+        'DEFAULT_AUTHENTICATION_CLASSES': (
+            'rest_framework.authentication.BasicAuthentication',  # enables simple command line authentication
+            'rest_framework.authentication.SessionAuthentication',
+            'rest_framework.authentication.TokenAuthentication',
+            'rest_framework_simplejwt.authentication.JWTAuthentication', # add JWT authentication
+        )
+    }
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
@@ -166,8 +182,8 @@ CORS_ALLOWED_ORIGIN_REGEXES = [
 ]
 
 CORS_ORIGIN_WHITELIST = (
-'http://localhost:5173',  # for localhost (REACT Default)
-'http://192.168.10.45:3000', # for network
+    'http://localhost:5173',  # for localhost (REACT Default)
+    'http://192.168.10.45:3000', # for network
 )
 
 CORS_EXPOSE_HEADERS = (
@@ -203,9 +219,29 @@ CSRF_COOKIE_HTTPONLY = False
 SESSION_COOKIE_SECURE = True
 SESSION_COOKIE_HTTPONLY = False
 
+
+# Add 'rest_framework_simplejwt' to the AUTHENTICATION_BACKENDS list
 AUTHENTICATION_BACKENDS = [
    'django.contrib.auth.backends.ModelBackend',
+   'rest_framework_simplejwt.authentication.JWTAuthentication',
 ]
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': datetime.timedelta(minutes=5),
+    'REFRESH_TOKEN_LIFETIME': datetime.timedelta(days=1),
+}
+
+# Add 'rest_framework_simplejwt' to the JWT_AUTH dictionary
+JWT_AUTH = {
+    'JWT_SECRET_KEY': 'i=@dw$tq%gcz7+yqw4f&(o#4^cwc%^rn&y7^5$f$$0(k*9+*k4',
+    'JWT_ALGORITHM': 'HS256',
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=7),  # set the expiration time for the JWT token
+    'JWT_ALLOW_REFRESH': True,
+    'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.RefreshToken',),
+    'TOKEN_TYPE_CLAIM': 'token_type',
+
+    'JTI_CLAIM': 'jti',
+}
 
 INTERNAL_IPS = [
     '127.0.0.1', '95.163.221.33'

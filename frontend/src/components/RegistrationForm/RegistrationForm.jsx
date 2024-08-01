@@ -22,6 +22,30 @@ const RegistrationForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Check password length
+    if (formData.password.length < 6) {
+      setError('Пароль должен быть длиной не менее 6 символов');
+      return;
+    }
+
+    // Check for at least one uppercase letter
+    if (!/[A-Z]/.test(formData.password)) {
+      setError('Пароль должен содержать хотя бы одну заглавную букву');
+      return;
+    }
+
+    // Check for at least one number
+    if (!/\d/.test(formData.password)) {
+      setError('Пароль должен содержать хотя бы одну цифру');
+      return;
+    }
+
+    // Check for at least one special symbol
+    if (!/[@$!%*?&]/.test(formData.password)) {
+      setError('Пароль должен содержать хотя бы один специальный символ');
+      return;
+    }
+
     const registrationResult = await registerUser(formData);
 
     if (registrationResult.success) {

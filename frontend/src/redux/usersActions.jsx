@@ -65,6 +65,15 @@ export const registerUser = async (formData) => {
   };
   
 export default registerUser;
+
+// Helper function to get a cookie value
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) {
+    return parts.pop().split(';').shift();
+  }
+}
   
 export const login = async (formData) => {
     try {
@@ -72,6 +81,8 @@ export const login = async (formData) => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'X-CSRFToken': getCookie('csrftoken'),  // Read CSRF token from cookie
         },
         body: JSON.stringify(formData),
         credentials: 'include',
