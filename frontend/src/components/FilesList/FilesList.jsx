@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchFiles, downloadFile, renameFile, changeComment, deleteFile, shareFile } from '../../redux/filesActions';
-// import ContextMenu from '../ContextMenu/ContextMenu';
 import { Edit2, Download, Share2, Trash2 } from "lucide-react";
 
 import './FilesList.css';
@@ -13,7 +12,6 @@ const FilesList = ({ userId }) => {
   const error = useSelector((state) => state.files.error);
 
   const [selectedFile, setSelectedFile] = useState(null);
-  // const [contextMenuPosition, setContextMenuPosition] = useState({ x: 0, y: 0 });
   
   useEffect(() => {
     if (userId) {
@@ -32,12 +30,16 @@ const FilesList = ({ userId }) => {
   const handleFileClick = (file, event) => {
     setSelectedFile(file);
     console.log(selectedFile);
-    // setContextMenuPosition({ x: event.clientX, y: event.clientY });
   };
 
-  const handleDownloadClick = () => {
-      dispatch(downloadFile(selectedFile.id));
-      setSelectedFile(null);
+  // const handleDownloadClick = () => {
+  //     dispatch(downloadFile(selectedFile.id));
+  //     setSelectedFile(null);
+  // };
+  
+  const handleDownloadClick = (fileId) => {
+    dispatch(downloadFile(fileId));
+    setSelectedFile(null);
   };
 
   const handleRename = (fileId, newName) => {
@@ -117,17 +119,6 @@ const FilesList = ({ userId }) => {
           </tbody>
         </table>
 
-      {/* {selectedFile && (
-        <ContextMenu
-          file={selectedFile}
-          onRename={handleRename}
-          onChange={handleChange}
-          onDownload={handleDownloadClick}
-          onDelete={handleDelete}
-          onShare={handleShare}
-          position={contextMenuPosition}
-        />
-      )} */}
     </div>
   );
 };

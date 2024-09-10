@@ -6,7 +6,7 @@ export const fetchFiles = (userId) => {
   return async (dispatch) => {
     try {
       const token = localStorage.getItem('authorization');
-      console.log('Token-', token)
+      console.log('Token:', token)
       const isAdmin = localStorage.getItem('isAdmin') === 'true'
 
       let url = `${apiUrl}/api/files/get-files/`;
@@ -16,7 +16,8 @@ export const fetchFiles = (userId) => {
       }
       const response = await fetch(url, {
         headers: {
-          'Authorization': `Token ${token}`,
+          // 'Authorization': `Token ${token}`,
+          'Authorization': token,
         },
       });
 

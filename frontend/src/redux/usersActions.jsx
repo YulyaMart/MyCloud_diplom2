@@ -77,10 +77,14 @@ function getCookie(name) {
   
 export const login = async (formData) => {
     try {
+      // Encode username and password into base64 format for authentication
+      const credentials = btoa(`${formData.username}:${formData.password}`);
+
       const response = await fetch(`${apiUrl}/api/users/login/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Basic ${credentials}`,
           'Accept': 'application/json',
           'X-CSRFToken': getCookie('csrftoken'),  // Read CSRF token from cookie
         },

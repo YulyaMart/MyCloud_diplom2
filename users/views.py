@@ -110,7 +110,7 @@ def user_login(request):
             response_data = {
                 'message': 'Login successful',
                 'isAdmin': user.is_staff,
-                'refresh': str(refresh), #returns TypeError: Expected a string value
+                'refresh': str(refresh), 
                 'access': str(refresh.access_token),
                 'authorization': f"Basic {base64_credentials}",
                 'currentuser' : username,
