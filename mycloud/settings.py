@@ -30,7 +30,7 @@ JWT_SECRET_KEY='i=@dw$tq%gcz7+yqw4f&(o#4^cwc%^rn&y7^5$f$$0(k*9+*k4'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '95.163.221.33']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '95.163.221.33', '194.58.126.104']
 
 
 # Application definition
@@ -179,11 +179,14 @@ CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOWED_ORIGIN_REGEXES = [
     'http://localhost:5173',
+    'http://194.58.126.104:5173'
 ]
 
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:5173',  # for localhost (REACT Default)
     'http://192.168.10.45:3000', # for network
+    'http://194.58.126.104:3000',  # for network
+    'http://194.58.126.104:5173',  # for network
 )
 
 CORS_EXPOSE_HEADERS = (
@@ -245,7 +248,7 @@ JWT_AUTH = {
 }
 
 INTERNAL_IPS = [
-    '127.0.0.1', '95.163.221.33'
+    '127.0.0.1', '95.163.221.33', '194.58.126.104'
 ]
 
 MEDIA_ROOT = 'storage/'
