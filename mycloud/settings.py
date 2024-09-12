@@ -179,13 +179,13 @@ CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOWED_ORIGIN_REGEXES = [
     'http://localhost:5173',
+    'http://95.163.221.33:5173'
     'http://194.58.126.104:5173'
 ]
 
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:5173',  # for localhost (REACT Default)
-    'http://192.168.10.45:3000', # for network
-    'http://194.58.126.104:3000',  # for network
+    'http://95.163.221.33:5173', # for network
     'http://194.58.126.104:5173',  # for network
 )
 
